@@ -14,6 +14,7 @@ import reactor.core.publisher.Flux;
 class WebfluxStreamapiTestApplicationTests {
 
     private final int[] intArr = { 1, 2, 3, 4, 5, 6, 7, 8};
+
     private static List<Integer> intArrayList1, intArrayList2;
 
     @BeforeAll
@@ -27,6 +28,14 @@ class WebfluxStreamapiTestApplicationTests {
         Flux<Integer> flux1 = Flux.fromIterable(intArrayList1);
         Flux<Integer> flux2 = Flux.fromIterable(intArrayList2);
         flux1.zipWith(flux2).toIterable().forEach(System.out::println);
+    }
+
+    @Test
+    void zip_test() {
+        Flux<Integer> flux1 = Flux.fromIterable(intArrayList1);
+        Flux<Integer> flux2 = Flux.fromIterable(intArrayList2);
+        Flux<Integer> resultFlux = Flux.zip(flux1, flux2, Integer::sum);
+        resultFlux.toIterable().forEach(System.out::println);
     }
 
 }
