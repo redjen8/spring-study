@@ -1,5 +1,7 @@
 package com.redjen.webfluxstreamapitest;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +37,7 @@ class WebfluxStreamapiTestApplicationTests {
         Flux<Integer> flux1 = Flux.fromIterable(intArrayList1);
         Flux<Integer> flux2 = Flux.fromIterable(intArrayList2);
         Flux<Integer> resultFlux = Flux.zip(flux1, flux2, Integer::sum);
-        resultFlux.toIterable().forEach(System.out::println);
+        resultFlux.toIterable().forEach(x -> assertEquals(9, (int)x));
     }
 
 }
