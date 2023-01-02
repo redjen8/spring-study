@@ -1,5 +1,6 @@
 package com.redjen.webfluxstreamapitest;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -22,6 +23,14 @@ public class WebfluxStreamapiTestApplication {
     @GetMapping("/hello")
     Flux<String> hello() {
         return Flux.just("Hello", "world!");
+    }
+
+    @GetMapping("/test")
+    Flux<TestDomain> testDomainFlux () {
+        return Flux.just(
+                TestDomain.builder().name("test1").createdAt(LocalDateTime.now()).build(),
+                TestDomain.builder().name("test2").createdAt(LocalDateTime.now()).build()
+        );
     }
 
     @GetMapping("/stream")
