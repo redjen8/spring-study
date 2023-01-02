@@ -17,7 +17,7 @@ public class WebfluxStreamapiTestApplication {
 
     @GetMapping("/hello")
     Flux<String> hello() {
-        return Flux.just("Hello, world!");
+        return Flux.just("Hello", "world!");
     }
 
 }
