@@ -3,6 +3,7 @@ package com.redjen.webfluxstreamapitest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.FluxExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -15,10 +16,10 @@ public class ReactiveApiControllerTest {
     private WebTestClient client;
 
     @BeforeEach
-    public void setUp() {
-        this.client = WebTestClient.bindToServer()
-            .baseUrl("http://localhost:8080")
-            .build();
+    public void setUp(ApplicationContext context) {
+        this.client = WebTestClient
+                .bindToApplicationContext(context)
+                .build();
     }
 
     @Test
